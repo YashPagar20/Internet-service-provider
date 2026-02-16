@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import './Login.css';
 
 const Login = () => {
@@ -69,7 +69,7 @@ const Login = () => {
                 </form>
 
                 <div className="footer-text">
-                    <p>Don't have an account? Contact Admin.</p>
+                    <p>Don't have an account? <Link to="/register">Create Account</Link></p>
                 </div>
             </div>
         </div>

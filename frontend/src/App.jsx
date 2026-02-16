@@ -1,6 +1,7 @@
 import { Routes, Route, Navigate } from 'react-router-dom'
 import './App.css'
 import Login from './pages/Login.jsx'
+import Register from './pages/Register.jsx'
 import Dashboard from './pages/Dashboard.jsx'
 import { AuthProvider, useAuth } from './context/AuthContext.jsx'
 
@@ -21,6 +22,7 @@ function App() {
         <AuthProvider>
             <Routes>
                 <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
                 <Route
                     path="/dashboard"
                     element={
