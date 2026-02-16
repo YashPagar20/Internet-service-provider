@@ -23,6 +23,31 @@ services:
     volumes:
       - redis_data:/data
 
+  backend:
+    build: ./backend
+    container_name: isp_backend
+    restart: always
+    ports:
+      - "8080:8080"
+    environment:
+      DB_URL: jdbc:postgresql://postgres:5432/isp_db
+      DB_USERNAME: postgres
+      DB_PASSWORD: password
+      REDIS_HOST: redis
+      JWT_SECRET: verysecretkeythatshouldbemeaningfullylongandcomplexfortestingpurposes
+    depends_on:
+      - postgres
+      - redis
+
+  frontend:
+    build: ./frontend
+    container_name: isp_frontend
+    restart: always
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+
 volumes:
   postgres_data:
   redis_data:

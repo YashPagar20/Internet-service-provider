@@ -1,14 +1,37 @@
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, Navigate } from 'react-router-dom'
 import './App.css'
+import Login from './pages/Login.jsx'
+import Dashboard from './pages/Dashboard.jsx'
+import { AuthProvider, useAuth } from './context/AuthContext.jsx'
+
+const ProtectedRoute = ({ children }) => {
+    const { token, loading } = useAuth();
+
+    if (loading) return <div>Loading...</div>;
+
+    if (!token) {
+        return <Navigate to="/login" replace />;
+    }
+
+    return children;
+};
 
 function App() {
     return (
-        <div className="app">
+        <AuthProvider>
             <Routes>
-                <Route path="/" element={<div><h1>ISP Automation System</h1><p>Welcome to the ISP Automation System</p></div>} />
-                <Route path="/login" element={<div><h1>Login Page</h1></div>} />
+                <Route path="/login" element={<Login />} />
+                <Route
+                    path="/dashboard"
+                    element={
+                        <ProtectedRoute>
+                            <Dashboard />
+                        </ProtectedRoute>
+                    }
+                />
+                <Route path="/" element={<Navigate to="/dashboard" replace />} />
             </Routes>
-        </div>
+        </AuthProvider>
     )
 }
 
