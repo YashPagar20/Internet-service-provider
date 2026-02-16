@@ -45,6 +45,10 @@ services:
     restart: always
     ports:
       - "3000:3000"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    command: sh -c "npm install && npm run dev"
     depends_on:
       - backend
 
