@@ -1,105 +1,246 @@
 /* Login.css */
 .login-container {
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    background: linear-gradient(135deg, #4f46e5 0%, #06b6d4 100%);
+    position: relative;
+    overflow: hidden;
     font-family: 'Inter', sans-serif;
+    z-index: 1;
+    pointer-events: auto;
+}
+
+/* Abstract Background Shapes */
+.login-container::before,
+.login-container::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    z-index: -1;
+    pointer-events: none;
+}
+
+.login-container::before {
+    width: 300px;
+    height: 300px;
+    top: -50px;
+    left: -50px;
+    animation: float 8s infinite ease-in-out;
+}
+
+.login-container::after {
+    width: 400px;
+    height: 400px;
+    bottom: -100px;
+    right: -100px;
+    animation: float 10s infinite ease-in-out reverse;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0px) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(20px) rotate(10deg);
+    }
+
+    100% {
+        transform: translateY(0px) rotate(0deg);
+    }
 }
 
 .login-card {
     background: rgba(255, 255, 255, 0.95);
-    padding: 40px;
-    border-radius: 12px;
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
-    border: 1px solid rgba(255, 255, 255, 0.18);
+    padding: 2.5rem;
+    border-radius: 20px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
     width: 100%;
-    max-width: 400px;
+    max-width: 420px;
+    z-index: 100;
+    /* Ensure high stacking context */
+    position: relative;
+    animation: slideUp 0.6s ease-out forwards;
+    backdrop-filter: blur(10px);
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.login-header {
     text-align: center;
+    margin-bottom: 2rem;
 }
 
 .login-header h2 {
-    margin-bottom: 10px;
-    color: #333;
-    font-weight: 700;
+    color: #1e293b;
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
 }
 
 .login-header p {
-    color: #666;
-    margin-bottom: 30px;
+    color: #64748b;
+    font-size: 0.95rem;
 }
 
 .form-group {
-    margin-bottom: 20px;
+    margin-bottom: 1.5rem;
+    position: relative;
     text-align: left;
 }
 
 .form-group label {
     display: block;
-    margin-bottom: 8px;
-    color: #555;
-    font-weight: 500;
+    margin-bottom: 0.5rem;
+    color: #334155;
+    font-weight: 600;
     font-size: 0.9rem;
+}
+
+.password-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.password-toggle {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #64748b;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 0;
+    z-index: 200;
+    /* Above input */
+    pointer-events: auto;
+}
+
+.password-toggle:hover {
+    color: #4f46e5;
 }
 
 .form-control {
     width: 100%;
-    padding: 12px 15px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
+    padding: 0.85rem 1rem;
+    padding-right: 60px;
+    /* Space for toggle */
+    border: 2px solid #e2e8f0;
+    border-radius: 10px;
     font-size: 1rem;
-    transition: border-color 0.3s ease;
+    transition: all 0.2s;
+    background-color: #f8fafc;
+    color: #1e293b;
+    /* Force dark text color */
     box-sizing: border-box;
-    /* Ensure padding doesn't affect width */
+    position: relative;
+    z-index: 150;
+    /* Above card, below toggle */
+    pointer-events: auto !important;
+    user-select: text !important;
+    -webkit-user-select: text !important;
 }
 
 .form-control:focus {
     outline: none;
-    border-color: #4a90e2;
-    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+    border-color: #4f46e5;
+    box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
+    background-color: #fff;
+    transform: translateY(-1px);
 }
 
 .login-btn {
     width: 100%;
-    padding: 12px;
-    background: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
-    border: none;
-    border-radius: 8px;
+    padding: 0.9rem;
+    background: #4f46e5;
+    /* Indigo */
     color: white;
+    border: none;
+    border-radius: 10px;
     font-size: 1rem;
-    font-weight: 600;
+    font-weight: 700;
     cursor: pointer;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    margin-top: 10px;
+    transition: all 0.3s;
+    margin-top: 1rem;
+    box-shadow: 0 4px 6px -1px rgba(79, 70, 229, 0.3);
+    pointer-events: auto;
 }
 
 .login-btn:hover {
+    background: #4338ca;
     transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(0, 242, 254, 0.4);
+    box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.4);
 }
 
 .login-btn:disabled {
-    background: #ccc;
+    background: #94a3b8;
     cursor: not-allowed;
     transform: none;
     box-shadow: none;
 }
 
 .error-message {
-    background-color: #ffebee;
-    color: #c62828;
-    padding: 10px;
-    border-radius: 6px;
-    margin-bottom: 20px;
+    background-color: #fee2e2;
+    color: #b91c1c;
+    padding: 0.75rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    text-align: center;
     font-size: 0.9rem;
-    border: 1px solid #ffcdd2;
+    border: 1px solid #fecaca;
+    animation: shake 0.4s ease-in-out;
+}
+
+@keyframes shake {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-5px);
+    }
+
+    75% {
+        transform: translateX(5px);
+    }
 }
 
 .footer-text {
-    margin-top: 20px;
+    text-align: center;
+    margin-top: 1.5rem;
     font-size: 0.9rem;
-    color: #777;
+    color: #64748b;
+}
+
+.footer-text a {
+    color: #4f46e5;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s;
+    pointer-events: auto;
+}
+
+.footer-text a:hover {
+    color: #4338ca;
+    text-decoration: underline;
 }

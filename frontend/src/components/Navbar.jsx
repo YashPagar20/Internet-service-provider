@@ -13,10 +13,6 @@ const Navbar = () => {
 
     return (
         <header className="navbar">
-            <div className="navbar-search">
-                {/* Search input placeholder */}
-            </div>
-
             <div className="navbar-user">
                 <div className="user-info">
                     <div className="user-name">{user?.username}</div>

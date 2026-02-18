@@ -7,7 +7,7 @@ services:
     restart: always
     environment:
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: password
+      POSTGRES_PASSWORD: root
       POSTGRES_DB: isp_db
     ports:
       - "5432:5432"
@@ -32,7 +32,7 @@ services:
     environment:
       DB_URL: jdbc:postgresql://postgres:5432/isp_db
       DB_USERNAME: postgres
-      DB_PASSWORD: password
+      DB_PASSWORD: root
       REDIS_HOST: redis
       JWT_SECRET: verysecretkeythatshouldbemeaningfullylongandcomplexfortestingpurposes
     depends_on:
