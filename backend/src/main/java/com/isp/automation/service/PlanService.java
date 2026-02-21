@@ -47,6 +47,8 @@ public class PlanService {
         plan.setSpeedMbps(planDetails.getSpeedMbps());
         plan.setPrice(planDetails.getPrice());
         plan.setValidityDays(planDetails.getValidityDays());
+        plan.setDescription(planDetails.getDescription());
+        plan.setIsPopular(planDetails.getIsPopular());
         plan.setIsActive(planDetails.getIsActive());
 
         return planRepository.save(plan);

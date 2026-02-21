@@ -30,6 +30,12 @@ public class Plan {
     @Column(nullable = false)
     private Integer validityDays;
 
+    @Column(columnDefinition = "TEXT")
+    private String description;
+
+    @Column(nullable = false)
+    private Boolean isPopular = false;
+
     @Column(nullable = false)
     private Boolean isActive = true;
 

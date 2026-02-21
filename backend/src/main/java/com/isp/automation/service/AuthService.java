@@ -33,8 +33,15 @@ public class AuthService {
     }
 
     public AuthResponse generateToken(String username, String password) {
-        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
-        String token = jwtUtil.generateToken(username);
-        return new AuthResponse(token);
+        try {
+            System.out.println("Login attempt for user: " + username);
+            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
+            System.out.println("Authentication successful for user: " + username);
+            String token = jwtUtil.generateToken(username);
+            return new AuthResponse(token);
+        } catch (Exception e) {
+            System.err.println("Authentication failed for user: " + username + " - " + e.getMessage());
+            throw e;
+        }
     }
 }

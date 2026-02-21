@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-    baseURL: 'http://localhost:8080/api', // Direct backend URL since we are running in prod mode in Docker
+    baseURL: '/api', // Use relative path to leverage Vite proxy in development
     headers: {
         'Content-Type': 'application/json',
     },
