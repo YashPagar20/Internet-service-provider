@@ -34,6 +34,9 @@ const Sidebar = () => {
                     </>
                 ) : (
                     <>
+                        <NavLink to="/plans" className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}>
+                            Browse Plans
+                        </NavLink>
                         <NavLink to="/my-bill" className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}>
                             My Bill
                         </NavLink>

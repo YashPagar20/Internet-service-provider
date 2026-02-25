@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
+import { Link } from 'react-router-dom';
 import dashboardService from '../services/dashboardService';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell, PieChart, Pie } from 'recharts';
 import '../components/Layout.css';
@@ -107,10 +108,23 @@ const Dashboard = () => {
                 </>
             ) : (
                 <div className="dashboard-grid">
-                    <div className="stat-card">
-                        <div className="stat-title">Current Plan</div>
-                        <div className="stat-value">Gold 100Mbps</div>
-                        <div className="stat-desc">Active</div>
+                    <div className="stat-card" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+                        <div>
+                            <div className="stat-title">Current Plan</div>
+                            <div className="stat-value">Gold 100Mbps</div>
+                            <div className="stat-desc">Active</div>
+                        </div>
+                        <Link to="/plans" className="logout-btn" style={{
+                            marginTop: '20px',
+                            textAlign: 'center',
+                            textDecoration: 'none',
+                            background: 'var(--primary-color)',
+                            color: 'white',
+                            border: 'none',
+                            display: 'block'
+                        }}>
+                            Upgrade Plan
+                        </Link>
                     </div>
                     <div className="stat-card">
                         <div className="stat-title">Amount Due</div>

@@ -1,109 +1,234 @@
 .plans-container {
-    padding: 20px 0;
+    padding: 10px 0;
+    animation: fadeIn 0.6s ease-out;
 }
 
-.plan-row {
+.plans-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+
+/* Plan Card Styles */
+.plan-card {
     background: var(--card-bg);
     backdrop-filter: blur(var(--blur));
     -webkit-backdrop-filter: blur(var(--blur));
-    border-bottom: 1px solid var(--border-color);
-    padding: 24px;
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    padding: 30px;
     display: flex;
-    align-items: center;
+    flex-direction: column;
     justify-content: space-between;
     transition: var(--transition);
     cursor: pointer;
     position: relative;
+    overflow: hidden;
+    height: 100%;
+}
+
+.plan-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-color), #a855f7);
+    opacity: 0;
+    transition: var(--transition);
+}
+
+.plan-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    border-color: rgba(99, 102, 241, 0.5);
+    background: rgba(30, 41, 59, 0.9);
+}
+
+.plan-card:hover::before {
+    opacity: 1;
+}
+
+.plan-card.popular {
+    border: 2px solid var(--primary-color);
+    background: rgba(99, 102, 241, 0.05);
+}
+
+.plan-card.popular::after {
+    content: 'Popular Choice';
+    position: absolute;
+    top: 15px;
+    right: -35px;
+    background: var(--primary-color);
+    color: white;
+    padding: 5px 40px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    transform: rotate(45deg);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Header Sections */
+.plan-header {
+    margin-bottom: 25px;
+}
+
+.plan-name-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    background: rgba(99, 102, 241, 0.1);
+    color: var(--primary-color);
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+}
+
+.plan-price-display {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+}
+
+.plan-currency-symbol {
+    font-size: 1.5rem;
+    font-weight: 600;
     color: var(--text-primary);
 }
 
-.plan-row:hover {
-    background: rgba(255, 255, 255, 0.05);
-    transform: translateX(5px);
+.plan-price-amount {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    line-height: 1;
 }
 
-.plan-price-section {
-    min-width: 120px;
+.plan-price-period {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    font-weight: 500;
 }
 
-.plan-currency {
-    font-size: 1.2rem;
-    vertical-align: top;
-    margin-right: 2px;
+/* Features List */
+.plan-features {
+    margin: 25px 0;
+    flex-grow: 1;
 }
 
-.plan-price {
-    font-size: 2.4rem;
-    font-weight: 300;
-}
-
-.plan-info-section {
-    flex: 1;
-    padding: 0 40px;
-}
-
-.plan-validity {
-    font-weight: 700;
-    margin-bottom: 8px;
-    font-size: 1.1rem;
-}
-
-.plan-details {
+.feature-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 12px;
     color: var(--text-secondary);
     font-size: 0.95rem;
-    line-height: 1.4;
-    max-width: 500px;
 }
 
-.plan-tag {
-    display: inline-flex;
+.feature-icon {
+    color: var(--success);
+    font-size: 1.1rem;
+    margin-top: 2px;
+}
+
+.speed-badge {
+    display: flex;
     align-items: center;
-    gap: 6px;
-    margin-top: 12px;
-    color: #f59e0b;
-    /* Amber/Yellow for tags */
-    font-weight: 700;
-    font-size: 0.9rem;
-    text-transform: uppercase;
-}
-
-.plan-tag-icon {
-    width: 16px;
-    height: 16px;
-    fill: currentColor;
-}
-
-.plan-action-section {
-    color: var(--text-secondary);
-    font-size: 1.5rem;
-    opacity: 0.5;
-}
-
-/* Form Styles */
-.plan-form-card {
-    background: var(--card-bg);
-    backdrop-filter: blur(var(--blur));
-    padding: 24px;
-    border-radius: var(--radius);
-    border: 1px solid var(--border-color);
-    margin-bottom: 30px;
-}
-
-.form-group {
+    gap: 8px;
+    padding: 10px 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
     margin-bottom: 20px;
 }
 
-.form-group label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: 600;
+.speed-value {
+    font-weight: 700;
+    color: var(--text-primary);
+    font-size: 1.1rem;
 }
 
-.form-control {
-    width: 100%;
-    padding: 12px;
-    background: rgba(255, 255, 255, 0.05);
+.speed-label {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+}
+
+/* Actions */
+.plan-card-footer {
+    border-top: 1px solid var(--border-color);
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.buy-btn {
+    background: linear-gradient(90deg, var(--primary-color), #818cf8);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--transition);
+    flex-grow: 1;
+    margin-right: 15px;
+}
+
+.buy-btn:hover {
+    filter: brightness(1.1);
+    transform: scale(1.02);
+    box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
+}
+
+.delete-icon-btn {
+    background: rgba(239, 68, 68, 0.1);
+    color: var(--danger);
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: var(--transition);
+    border: 1px solid transparent;
+}
+
+.delete-icon-btn:hover {
+    background: var(--danger);
+    color: white;
+}
+
+/* Form Styling - Overriding base */
+.plan-form-card {
+    background: var(--card-bg);
+    backdrop-filter: blur(20px);
     border: 1px solid var(--border-color);
-    border-radius: 8px;
-    color: #fff;
+    padding: 40px;
+    border-radius: 24px;
+    margin-bottom: 40px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.2);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
