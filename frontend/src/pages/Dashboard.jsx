@@ -107,31 +107,55 @@ const Dashboard = () => {
                     </div>
                 </>
             ) : (
-                <div className="dashboard-grid">
-                    <div className="stat-card" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-                        <div>
-                            <div className="stat-title">Current Plan</div>
-                            <div className="stat-value">Gold 100Mbps</div>
-                            <div className="stat-desc">Active</div>
+                <>
+                    <div className="dashboard-grid">
+                        <div className="stat-card" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+                            <div>
+                                <div className="stat-title">Current Plan</div>
+                                <div className="stat-value">Gold 100Mbps</div>
+                                <div className="stat-desc">Active</div>
+                            </div>
+                            <Link to="/plans" className="logout-btn" style={{
+                                marginTop: '20px',
+                                textAlign: 'center',
+                                textDecoration: 'none',
+                                background: 'var(--primary-color)',
+                                color: 'white',
+                                border: 'none',
+                                display: 'block'
+                            }}>
+                                Upgrade Plan
+                            </Link>
                         </div>
-                        <Link to="/plans" className="logout-btn" style={{
-                            marginTop: '20px',
-                            textAlign: 'center',
-                            textDecoration: 'none',
-                            background: 'var(--primary-color)',
-                            color: 'white',
-                            border: 'none',
-                            display: 'block'
-                        }}>
-                            Upgrade Plan
-                        </Link>
+                        <div className="stat-card">
+                            <div className="stat-title">Amount Due</div>
+                            <div className="stat-value">$0.00</div>
+                            <div className="stat-desc">No pending bills</div>
+                        </div>
                     </div>
-                    <div className="stat-card">
-                        <div className="stat-title">Amount Due</div>
-                        <div className="stat-value">$0.00</div>
-                        <div className="stat-desc">No pending bills</div>
+
+                    <div style={{ marginTop: '40px' }}>
+                        <h2 style={{ fontSize: '1.5rem', marginBottom: '20px', color: 'var(--text-primary)' }}>Featured Plans</h2>
+                        <div className="dashboard-grid">
+                            <div className="stat-card" style={{ borderLeft: '4px solid var(--primary-color)' }}>
+                                <div className="stat-title">TOP PICK</div>
+                                <div className="stat-value" style={{ fontSize: '1.4rem' }}>Gamer Pro</div>
+                                <div className="stat-desc">300 Mbps | ₹999</div>
+                                <p style={{ marginTop: '10px', color: 'var(--text-secondary)', fontSize: '0.85rem' }}>
+                                    High speed & low latency
+                                </p>
+                            </div>
+                            <div className="stat-card" style={{ borderLeft: '4px solid #10b981' }}>
+                                <div className="stat-title">VALUE PACK</div>
+                                <div className="stat-value" style={{ fontSize: '1.4rem' }}>Annual Value</div>
+                                <div className="stat-desc">100 Mbps | ₹4999</div>
+                                <p style={{ marginTop: '10px', color: 'var(--text-secondary)', fontSize: '0.85rem' }}>
+                                    Best for long term
+                                </p>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                </>
             )}
         </div>
     );
