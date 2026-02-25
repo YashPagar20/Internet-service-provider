@@ -26,6 +26,7 @@ public class BillService {
     private final BillRepository billRepository;
     private final CustomerRepository customerRepository;
     private final PlanRepository planRepository;
+    private final NotificationService notificationService;
 
     @Transactional(readOnly = true)
     public List<Bill> getAllBills() {
@@ -72,7 +73,9 @@ public class BillService {
         bill.setDueDate(LocalDate.now().plusDays(15)); // 15 days to pay
         bill.setStatus(Bill.BillStatus.UNPAID);
         bill.setLateFee(BigDecimal.ZERO);
-        billRepository.save(bill);
+        Bill savedBill = billRepository.save(bill);
+        
+        notificationService.sendBillNotification(customer.getId(), savedBill.getId().toString(), savedBill.getAmount().toString());
     }
     
     // Manual trigger for testing

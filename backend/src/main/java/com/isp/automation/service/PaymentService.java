@@ -17,6 +17,7 @@ public class PaymentService {
 
     private final PaymentRepository paymentRepository;
     private final BillRepository billRepository;
+    private final NotificationService notificationService;
 
     @Transactional
     public Payment processPayment(Payment payment) {
@@ -36,6 +37,8 @@ public class PaymentService {
         if (savedPayment.getStatus() == Payment.PaymentStatus.SUCCESS) {
             bill.setStatus(Bill.BillStatus.PAID);
             billRepository.save(bill);
+            
+            notificationService.sendPaymentSuccessNotification(bill.getCustomerId(), savedPayment.getTransactionId(), bill.getAmount().toString());
         }
 
         return savedPayment;
