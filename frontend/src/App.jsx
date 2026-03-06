@@ -1,9 +1,13 @@
 import { Routes, Route, Navigate } from 'react-router-dom'
 import './App.css'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import Login from './pages/Login.jsx'
 import Register from './pages/Register.jsx'
 import Dashboard from './pages/Dashboard.jsx'
 import Plans from './pages/Plans.jsx'
+import MyBill from './pages/MyBill.jsx'
+import Support from './pages/Support.jsx'
 import Layout from './components/Layout.jsx'
 import { AuthProvider, useAuth } from './context/AuthContext.jsx'
 
@@ -28,9 +32,12 @@ function App() {
                 <Route element={<ProtectedRoute><Layout /></ProtectedRoute>}>
                     <Route path="/dashboard" element={<Dashboard />} />
                     <Route path="/plans" element={<Plans />} />
+                    <Route path="/my-bill" element={<MyBill />} />
+                    <Route path="/support" element={<Support />} />
                     <Route path="/" element={<Navigate to="/dashboard" replace />} />
                 </Route>
             </Routes>
+            <ToastContainer position="bottom-right" autoClose={3000} theme="dark" />
         </AuthProvider>
     )
 }

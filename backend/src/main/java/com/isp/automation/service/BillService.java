@@ -38,11 +38,15 @@ public class BillService {
         return billRepository.findByCustomerId(customerId);
     }
 
+    @Transactional(readOnly = true)
+    public Bill getBillById(UUID id) {
+        return billRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Bill not found"));
+    }
+
     /**
-     * Scheduled job to generate bills for all ACTIVE customers.
-     * Runs every month on the 1st day at 00:00.
+     * Logic to generate bills for all ACTIVE customers.
      */
-    @Scheduled(cron = "0 0 0 1 * ?")
     @Transactional
     public void generateMonthlyBills() {
         log.info("Starting monthly bill generation...");

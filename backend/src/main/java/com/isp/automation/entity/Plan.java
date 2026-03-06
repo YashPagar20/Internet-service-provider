@@ -44,4 +44,28 @@ public class Plan {
 
     @UpdateTimestamp
     private LocalDateTime updatedAt;
+
+    public void setPlanName(String name) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void setSpeedMbps(int speed) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void setPrice(BigDecimal valueOf) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void setValidityDays(int validity) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void setIsPopular(boolean popular) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void setDescription(String desc) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 }

@@ -11,9 +11,9 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class DataInitializer implements CommandLineRunner {
 
-    private final UserRepository userRepository;
-    private final com.isp.automation.repository.PlanRepository planRepository;
-    private final PasswordEncoder passwordEncoder;
+    private final UserRepository userRepository = null;
+    private final com.isp.automation.repository.PlanRepository planRepository = null;
+    private final PasswordEncoder passwordEncoder = null;
 
     @Override
     public void run(String... args) throws Exception {

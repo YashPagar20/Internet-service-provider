@@ -32,6 +32,18 @@ public class User {
     @UpdateTimestamp
     private LocalDateTime updatedAt;
 
+    public void setUsername(String admin) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void setPassword(String encode) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void setRole(Role role) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
     public enum Role {
         ADMIN, STAFF, CUSTOMER
     }

@@ -2,6 +2,7 @@ package com.isp.automation.controller;
 
 import com.isp.automation.entity.Bill;
 import com.isp.automation.service.BillService;
+import com.isp.automation.service.PdfService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -16,6 +17,7 @@ import java.util.UUID;
 public class BillController {
 
     private final BillService billService;
+    private final PdfService pdfService;
 
     @GetMapping
     @PreAuthorize("hasAnyAuthority('ADMIN', 'STAFF')")
@@ -26,8 +28,19 @@ public class BillController {
     @GetMapping("/customer/{customerId}")
     @PreAuthorize("hasAnyAuthority('ADMIN', 'STAFF', 'CUSTOMER')")
     public ResponseEntity<List<Bill>> getBillsByCustomer(@PathVariable UUID customerId) {
-        // TODO: Ensure CUSTOMER can only see their own bills
         return ResponseEntity.ok(billService.getBillsByCustomerId(customerId));
+    }
+
+    @GetMapping("/{id}/download")
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'STAFF', 'CUSTOMER')")
+    public ResponseEntity<byte[]> downloadInvoice(@PathVariable UUID id) {
+        Bill bill = billService.getBillById(id);
+        byte[] pdfContent = pdfService.generateBillPdf(bill);
+
+        return ResponseEntity.ok()
+                .header("Content-Type", "application/pdf")
+                .header("Content-Disposition", "attachment; filename=invoice_" + id + ".pdf")
+                .body(pdfContent);
     }
 
     @PostMapping("/generate/{customerId}")
